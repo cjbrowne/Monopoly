@@ -8,32 +8,44 @@
 #ifndef BOARDSQUARE_H_
 #define BOARDSQUARE_H_
 
+#include "Rules.h"
 #include "Player.h"
 
 enum SquareType
 {
-  GO = 0,
-  PROPERTY = 1,
-  CHANCE = 2,
-  COMMUNITY_CHEST = 3,
-  STATION = 4,
-  JAIL = 5,
-  FREE_PARKING = 6,
-  UTILITY = 7
+    UNINITIALISED = 0,
+    GO_SQUARE = 1,
+    PROPERTY = 2,
+    CHANCE = 3,
+    COMMUNITY_CHEST = 4,
+    STATION = 5,
+    JAIL = 6,
+    FREE_PARKING = 7,
+    WATER_WORKS = 8,
+    ELECTRICITY_COMPANY = 9,
+    INCOME_TAX = 10,
+    SUPER_TAX = 11
 };
 
 class BoardSquare
 {
-public:
-  BoardSquare(SquareType type);
-  void landOn(Player* player);
-  void purchase(Player* player);
-  void pass(Player* player);
-private:
-  SquareType type;
-  Player* owner;
-  Player* occupier;
-  unsigned int cash; // rent if property and rentOnSquare is true, fines if free parking and strictFreeParking is false
+    public:
+	BoardSquare();
+	BoardSquare(SquareType type);
+	BoardSquare(Property property);
+	void
+	landOn(Player* player, Rules rules);
+	void
+	pass(Player* player, Rules rules);
+	unsigned int cash; // rent if property and rentOnSquare is true, fines if free parking and strictFreeParking is false
+    private:
+	void
+	auction();
+	SquareType type;
+	Property property;
+	Player* owner;
+	Player* occupier;
+
 };
 
 #endif /* BOARDSQUARE_H_ */

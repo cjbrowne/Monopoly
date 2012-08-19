@@ -11,10 +11,10 @@
 
 int main(void)
 {
-	RuleFile ruleFile(std::string("rules.mrf"));
-	Rules rules = ruleFile.load();
-	Game game(rules,2);
+    RuleFile ruleFile(std::string("rules.mrf"));
+    Rules rules = ruleFile.load();
+    Game game(rules, 2);
 
-	return 0;
+    return 0;
 }
 

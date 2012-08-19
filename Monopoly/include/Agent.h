@@ -12,10 +12,11 @@
 
 class Agent
 {
-protected:
-  Agent();
-  virtual ~Agent();
-  virtual bool makeDecision(std::string decisionText);
+    public:
+	virtual bool makeDecision(std::string decisionText);
+    protected:
+	Agent();
+	virtual	~Agent();
 };
 
 #endif /* AGENT_H_ */

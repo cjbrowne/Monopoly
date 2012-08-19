@@ -10,12 +10,14 @@
 
 #include "Agent.h"
 
-class HumanAgent : public virtual Agent
+class HumanAgent: public virtual Agent
 {
-public:
-  HumanAgent();
-  virtual ~HumanAgent();
-  bool makeDecision(std::string decisionText);
+    public:
+	HumanAgent();
+	virtual
+	~HumanAgent();
+	bool
+	makeDecision(std::string decisionText);
 };
 
 #endif /* HUMANAGENT_H_ */

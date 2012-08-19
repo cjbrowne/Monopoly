@@ -9,19 +9,19 @@
 
 unsigned int Dice::roll()
 {
-  // roll twelves all the time for test
-  isDouble = true;
-  return 12;
+    // roll twelves all the time for test
+    isDouble = true;
+    return 12;
 }
 
 Dice::Dice()
 {
-  // TODO Auto-generated constructor stub
+    // TODO Auto-generated constructor stub
 
 }
 
 Dice::~Dice()
 {
-  // TODO Auto-generated destructor stub
+    // TODO Auto-generated destructor stub
 }
 

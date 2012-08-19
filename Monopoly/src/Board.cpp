@@ -9,11 +9,14 @@
 
 Board::Board()
 {
-  // squares[0] = BoardSquare(SquareType.GO);
+    squares[0] = BoardSquare(GO_SQUARE);
+    // squares[1] = BoardSquare(OLD_KENT_ROAD);
+    squares[2] = BoardSquare(INCOME_TAX);
+    // squares[3] = BoardSquare(WHITECHAPEL_ROAD);
+
 }
 
 Board::~Board()
 {
-  // TODO Auto-generated destructor stub
+    // TODO Auto-generated destructor stub
 }
-

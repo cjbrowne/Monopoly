@@ -8,11 +8,14 @@
 #ifndef RULES_H_
 #define RULES_H_
 
-class Rules {
-public:
+class Rules
+{
+    public:
 	Rules();
-	virtual ~Rules();
-	void printAll();
+	virtual
+	~Rules();
+	void
+	printAll();
 
 	// startup rules
 	unsigned int startCash; // set the amount of start cash
@@ -29,8 +32,8 @@ public:
 	bool onlyMeanChance; // removes all positive chance cards
 	bool onlyMeanCommunity; // removes all positive community chest cards
 
-	// rules to customise the gameplay experience
-	double exchangeRate; // changes the currency from £
+	// rules to customise the game-play experience
+	double exchangeRate; // changes the currency from £ (user-interface convenience only, the back-end always deals in £)
 	char currencySymbol; // changes the currency symbol (eg £, $, etc.)
 
 	// rules invented by Miranda and Chris, see notes at the bottom of the file

@@ -10,12 +10,14 @@
 
 #include "Agent.h"
 
-class ComputerAgent : public virtual Agent
+class ComputerAgent: public virtual Agent
 {
-public:
-  ComputerAgent();
-  virtual ~ComputerAgent();
-  bool makeDecision(std::string decisionText);
+    public:
+	ComputerAgent();
+	virtual
+	~ComputerAgent();
+	bool
+	makeDecision(std::string decisionText);
 };
 
 #endif /* COMPUTERAGENT_H_ */

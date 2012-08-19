@@ -1,19 +1,19 @@
 /*
- * PropertyDeck.cpp
+ * ChanceDeck.cpp
  *
- *  Created on: 18 aug 2012
+ *  Created on: 19 aug 2012
  *      Author: Chris Browne
  */
 
-#include "PropertyDeck.h"
+#include "ChanceDeck.h"
 
-PropertyDeck::PropertyDeck()
+ChanceDeck::ChanceDeck()
 {
     // TODO Auto-generated constructor stub
 
 }
 
-PropertyDeck::~PropertyDeck()
+ChanceDeck::~ChanceDeck()
 {
     // TODO Auto-generated destructor stub
 }

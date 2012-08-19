@@ -13,30 +13,39 @@
 
 enum Piece
 {
-  CAR,
-  BOAT,
-  DOG,
-  TOP_HAT,
-  IRON,
-  WHEELBARROW,
-  HORSE,
-  THIMBLE,
+    CAR,
+    BOAT,
+    DOG,
+    TOP_HAT,
+    IRON,
+    WHEELBARROW,
+    HORSE,
+    THIMBLE,
 };
 
 class Player
 {
-public:
-  Player();
-  virtual ~Player();
-  Player* next;
-  Agent* controller;
-private:
-  PropertyDeck properties;
-  unsigned int cash;
-  bool hasGetOutOfJailFreeChance;
-  bool hasGetOutOfJailFreeCommunity;
-  bool inJail; // used for distinguishing between "jail" and "just visiting"
-  Piece piece;
+    public:
+	Player();
+	virtual
+	~Player();
+	void
+	receiveCash(unsigned int amount, std::string reason);
+	void
+	payRent(Player* to, unsigned int amount);
+	bool
+	canAfford(unsigned int amount);
+	void
+	purchaseProperty(Property property, unsigned int cost);
+	Player* next;
+	Agent* controller;
+    private:
+	unsigned int cash;
+	PropertyDeck properties;
+	bool hasGetOutOfJailFreeChance;
+	bool hasGetOutOfJailFreeCommunity;
+	bool inJail; // used for distinguishing between "jail" and "just visiting"
+	Piece piece;
 };
 
 #endif /* PLAYER_H_ */

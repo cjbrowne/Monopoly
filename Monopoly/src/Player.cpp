@@ -9,12 +9,30 @@
 
 Player::Player()
 {
-  // TODO Auto-generated constructor stub
+    // TODO Auto-generated constructor stub
 
 }
 
 Player::~Player()
 {
-  // TODO Auto-generated destructor stub
+    // TODO Auto-generated destructor stub
 }
+
+void Player::receiveCash(unsigned int amount, std::string reason)
+{
+}
+
+void Player::payRent(Player* to, unsigned int amount)
+{
+}
+
+bool Player::canAfford(unsigned int amount)
+{
+    return (amount <= cash);
+}
+
+void Player::purchaseProperty(Property property, unsigned int cost)
+{
+}
+
 

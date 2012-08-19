@@ -8,15 +8,20 @@
 #ifndef BOARD_H_
 #define BOARD_H_
 
+#include "CommunityDeck.h"
+#include "ChanceDeck.h"
 #include "BoardSquare.h"
 
 class Board
 {
-public:
-  Board();
-  virtual ~Board();
-private:
-  BoardSquare squares[40];
+    public:
+	Board();
+	virtual
+	~Board();
+    private:
+	BoardSquare squares[40];
+	ChanceDeck chance;
+	CommunityDeck community;
 };
 
 #endif /* BOARD_H_ */

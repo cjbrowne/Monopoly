@@ -15,19 +15,22 @@
 
 class Game
 {
-public:
-  Game(Rules rules,unsigned int numPlayers);
-  virtual ~Game();
-  void start();
-  void takeTurn();
+    public:
+	Game(Rules rules, unsigned int numPlayers);
+	virtual
+	~Game();
+	void
+	start();
+	void
+	takeTurn();
 
-  bool isOver;
-private:
-  Player* currentPlayer;
-  unsigned int numPlayers;
-  Rules rules;
-  Dice dice;
-  Board board;
+	bool isOver;
+    private:
+	Player* currentPlayer;
+	unsigned int numPlayers;
+	Rules rules;
+	Dice dice;
+	Board board;
 };
 
 #endif /* GAME_H_ */

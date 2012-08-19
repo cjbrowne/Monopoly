@@ -11,14 +11,17 @@
 #include <fstream>
 #include "Rules.h"
 
-class RuleFile {
-public:
+class RuleFile
+{
+    public:
 	RuleFile();
 	RuleFile(std::string file_name);
 	RuleFile(char* file_name);
-	virtual ~RuleFile();
-	Rules load();
-private:
+	virtual
+	~RuleFile();
+	Rules
+	load();
+    private:
 	std::ifstream fileOnDisk;
 	std::string fileName;
 };
