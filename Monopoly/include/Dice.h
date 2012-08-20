@@ -12,11 +12,13 @@ class Dice
 {
     public:
 	Dice();
-	virtual
-	~Dice();
-	unsigned int
-	roll();
+	virtual ~Dice();
+	unsigned int roll();
 	bool isDouble;
+	void print();
+    private:
+	unsigned int dieA;
+	unsigned int dieB;
 };
 
 #endif /* DICE_H_ */

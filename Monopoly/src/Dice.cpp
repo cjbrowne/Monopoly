@@ -5,19 +5,27 @@
  *      Author: Chris Browne
  */
 
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
 #include "Dice.h"
 
 unsigned int Dice::roll()
 {
-    // roll twelves all the time for test
-    isDouble = true;
-    return 12;
+    dieA = std::rand()%6;
+    dieB = std::rand()%6;
+    isDouble = (dieA == dieB);
+    return dieA + dieB;
+}
+
+void Dice::print()
+{
+    std::cout << dieA << ", " << dieB;
 }
 
 Dice::Dice()
 {
-    // TODO Auto-generated constructor stub
-
+    std::srand(std::time(NULL));
 }
 
 Dice::~Dice()

@@ -8,11 +8,13 @@
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
+#include <string>
 #include "Agent.h"
 #include "PropertyDeck.h"
 
 enum Piece
 {
+    BAD_CHOICE,
     CAR,
     BOAT,
     DOG,
@@ -26,7 +28,7 @@ enum Piece
 class Player
 {
     public:
-	Player();
+	Player(std::string name,Piece chosenPiece);
 	virtual
 	~Player();
 	void
@@ -39,6 +41,7 @@ class Player
 	purchaseProperty(Property property, unsigned int cost);
 	Player* next;
 	Agent* controller;
+	std::string name;
     private:
 	unsigned int cash;
 	PropertyDeck properties;

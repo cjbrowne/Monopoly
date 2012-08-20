@@ -8,6 +8,8 @@
 #include <iostream>
 #endif
 #include "BoardSquare.h"
+#include "HumanAgent.h"
+#include "ComputerAgent.h"
 
 BoardSquare::BoardSquare()
 {
@@ -56,16 +58,29 @@ void BoardSquare::landOn(Player* player, Rules rules)
 	    }
 	    else
 	    {
-		if (player->canAfford(property.getPrice())
-			&& player->controller->makeDecision(
-				"Will you buy this property?"))
+		if (player->canAfford(property.getPrice()))
 		{
-		    player->purchaseProperty(property, property.getPrice());
+		    if (player->controller->isHuman)
+		    {
+			if (((HumanAgent*) (player->controller))->makeDecision(
+				"Will you buy " + property.getName() + "?"))
+			{
+			    player->purchaseProperty(property,
+				    property.getPrice());
+			    break;
+			}
+
+		    }
+		    else if (((ComputerAgent*) (player->controller))->makeDecision(
+			    "Will you buy " + property.getName() + "?"))
+		    {
+			player->purchaseProperty(property, property.getPrice());
+			break;
+		    }
+
 		}
 		else
-		{
 		    auction();
-		}
 	    }
 	    break;
 	case CHANCE:

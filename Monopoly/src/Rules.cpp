@@ -43,20 +43,20 @@ Rules::~Rules()
 void Rules::printAll()
 {
     std::cout << "\tStart Cash:\t\t" << currencySymbol
-	    << startCash * exchangeRate;
-    std::cout << "\n\tProperties are" << (dealProperties ? "" : " not")
-	    << " dealt at start.";
-    std::cout << "\n\tSalary:\t\t\t" << currencySymbol << salary * exchangeRate;
-    std::cout << "\n\tSalary is" << (doubleIfLandOnGo ? "" : " not")
-	    << " doubled when Go is landed upon.";
-    std::cout << "\n\tNegative chance cards are"
-	    << (onlyNiceChance ? "" : " not") << " removed.";
-    std::cout << "\n\tNegative community chest cards are"
-	    << (onlyNiceCommunity ? "" : " not") << " removed.";
-    std::cout << "\n\tPositive chance cards are"
-	    << (onlyMeanChance ? "" : " not") << " removed.";
-    std::cout << "\n\tPositive community chest cards are"
-	    << (onlyMeanCommunity ? "" : " not") << " removed.";
-    std::cout << "\n\tExchange Rate:\t\t" << exchangeRate;
-    std::cout << "\n\tCurrency Symbol:\t" << currencySymbol;
+	    << startCash * exchangeRate << "\n";
+    std::cout << "\tProperties are" << (dealProperties ? "" : " not")
+	    << " dealt at start.\n";
+    std::cout << "\tSalary:\t\t\t" << currencySymbol << salary * exchangeRate;
+    std::cout << "\tSalary is" << (doubleIfLandOnGo ? "" : " not")
+	    << " doubled when Go is landed upon.\n";
+    std::cout << "\tNegative chance cards are"
+	    << (onlyNiceChance ? "" : " not") << " removed.\n";
+    std::cout << "\tNegative community chest cards are"
+	    << (onlyNiceCommunity ? "" : " not") << " removed.\n";
+    std::cout << "\tPositive chance cards are"
+	    << (onlyMeanChance ? "" : " not") << " removed.\n";
+    std::cout << "\tPositive community chest cards are"
+	    << (onlyMeanCommunity ? "" : " not") << " removed.\n";
+    std::cout << "\tExchange Rate:\t\t" << exchangeRate << "\n";
+    std::cout << "\tCurrency Symbol:\t" << currencySymbol << "\n";
 }

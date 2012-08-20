@@ -26,6 +26,7 @@ class Game
 
 	bool isOver;
     private:
+	Piece pieceNameToType(std::string name);
 	Player* currentPlayer;
 	unsigned int numPlayers;
 	Rules rules;

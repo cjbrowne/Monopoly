@@ -3,26 +3,33 @@
  *
  *  Created on: 18 aug 2012
  *      Author: Chris Browne
+ *
+ *
+ * NOTE: this is a testing, command-line version of this file.  A replacement, SDL version is in the planning phase.
  */
 
 #include <iostream>
 #include <string>
 #include "HumanAgent.h"
+#include "Board.h"
 
-inline bool strtobool(std::string str)
+HumanAgent::HumanAgent()
 {
-    if (str.compare("yes") == 0) return true;
-    if (str.compare("true") == 0) return true;
-    if (str.compare("1") == 0) return true;
-    return false;
+    isHuman = true;
+}
+
+HumanAgent::~HumanAgent()
+{
 }
 
 bool HumanAgent::makeDecision(std::string decisionText)
 {
-    // for now, we'll use a text-only approach for this class
-    std::string rv;
+    bool rv;
     std::cout << decisionText;
     std::cin >> rv;
-    return strtobool(rv);
+    return rv;
 }
 
+void HumanAgent::takeTurn(Player* forWhom, Board on)
+{
+}

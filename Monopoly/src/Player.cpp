@@ -7,10 +7,10 @@
 
 #include "Player.h"
 
-Player::Player()
+Player::Player(std::string name,Piece chosenPiece)
 {
-    // TODO Auto-generated constructor stub
-
+    this->name = name;
+    this->piece = chosenPiece;
 }
 
 Player::~Player()
