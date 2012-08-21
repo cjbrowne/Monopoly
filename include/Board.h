@@ -18,6 +18,7 @@ class Board
 	Board();
 	virtual
 	~Board();
+	void movePlayer(Player* whom,unsigned int howFar);
     private:
 	BoardSquare squares[40];
 	ChanceDeck chance;

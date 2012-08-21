@@ -48,7 +48,7 @@ Game::Game(Rules rules, unsigned int numPlayers)
     std::cout << "Is player 1 a human player? ";
     std::cin >> humanBuffer;
     currentPlayer = new Player(playerNameBuffer,pieceNameToType(pieceNameBuffer));
-    currentPlayer->controller = (toBool(humanBuffer)?(Agent*)new HumanAgent():(Agent*)new ComputerAgent());
+    currentPlayer->controller = (toBool(humanBuffer)?(Agent*)new HumanAgent(rules):(Agent*)new ComputerAgent());
     firstPlayer = currentPlayer;
     do
     {
@@ -62,7 +62,7 @@ Game::Game(Rules rules, unsigned int numPlayers)
 	std::cout << "Is player " << numPlayers << " a human player? ";
 	std::cin >> humanBuffer;
 	currentPlayer->next = new Player(playerNameBuffer,pieceNameToType(pieceNameBuffer));
-	currentPlayer->next->controller = (toBool(humanBuffer)?(Agent*)new HumanAgent():(Agent*)new ComputerAgent());
+	currentPlayer->next->controller = (toBool(humanBuffer)?(Agent*)new HumanAgent(rules):(Agent*)new ComputerAgent());
 	currentPlayer = currentPlayer->next;
 	this->numPlayers++;
     } while (this->numPlayers < numPlayers);

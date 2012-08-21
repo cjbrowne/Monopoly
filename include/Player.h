@@ -43,8 +43,8 @@ class Player
 	Agent* controller;
 	std::string name;
 	Piece piece;
-    private:
 	unsigned int cash;
+    private:
 	PropertyDeck properties;
 	bool hasGetOutOfJailFreeChance;
 	bool hasGetOutOfJailFreeCommunity;

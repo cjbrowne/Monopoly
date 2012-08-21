@@ -20,3 +20,8 @@ Board::~Board()
 {
     // TODO Auto-generated destructor stub
 }
+
+void Board::movePlayer(Player* whom, unsigned int howFar)
+{
+}
+
