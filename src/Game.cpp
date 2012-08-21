@@ -151,6 +151,7 @@ Game::~Game()
     {
 	tmp = currentPlayer;
 	currentPlayer = currentPlayer->next;
+	delete tmp->controller;
 	delete tmp;
     } while (currentPlayer != firstPlayer);
     delete firstPlayer;

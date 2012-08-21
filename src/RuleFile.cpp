@@ -20,7 +20,8 @@ RuleFile::RuleFile(char* file_name)
 
 RuleFile::~RuleFile()
 {
-
+    if(fileOnDisk.is_open())
+	fileOnDisk.close();
 }
 
 Rules RuleFile::load()
@@ -45,6 +46,7 @@ Rules RuleFile::load()
     std::cout << "Rules:\n";
     rv.printAll();
 #endif
+    free(buf);
     return rv;
 }
 
