@@ -42,13 +42,13 @@ class Player
 	Player* next;
 	Agent* controller;
 	std::string name;
+	Piece piece;
     private:
 	unsigned int cash;
 	PropertyDeck properties;
 	bool hasGetOutOfJailFreeChance;
 	bool hasGetOutOfJailFreeCommunity;
 	bool inJail; // used for distinguishing between "jail" and "just visiting"
-	Piece piece;
 };
 
 #endif /* PLAYER_H_ */

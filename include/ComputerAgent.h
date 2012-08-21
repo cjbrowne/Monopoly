@@ -17,7 +17,7 @@ class ComputerAgent: public Agent
 	virtual
 	~ComputerAgent();
 	bool makeDecision(std::string decisionText);
-	void takeTurn(Player* forWhom, Board on);
+	void takeTurn(Player* forWhom, Board on,Dice dice);
 };
 
 #endif /* COMPUTERAGENT_H_ */

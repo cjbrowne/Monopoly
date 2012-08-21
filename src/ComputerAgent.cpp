@@ -5,6 +5,7 @@
  *      Author: Chris Browne
  */
 
+#include "Dice.h"
 #include "ComputerAgent.h"
 #include "Player.h"
 #include "Board.h"
@@ -24,7 +25,7 @@ bool ComputerAgent::makeDecision(std::string decisionText)
     return true;
 }
 
-void ComputerAgent::takeTurn(Player* forWhom, Board on)
+void ComputerAgent::takeTurn(Player* forWhom, Board on,Dice dice)
 {
 }
 

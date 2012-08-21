@@ -17,7 +17,7 @@ class HumanAgent: public Agent
 	virtual
 	~HumanAgent();
 	bool makeDecision(std::string decisionText);
-	void takeTurn(Player* forWhom,Board on);
+	void takeTurn(Player* forWhom, Board on,Dice dice);
 };
 
 #endif /* HUMANAGENT_H_ */

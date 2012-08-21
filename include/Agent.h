@@ -17,12 +17,13 @@
 // Forward declarations necessary for ABC
 class Player;
 class Board;
+class Dice;
 
 class Agent
 {
     public:
 	bool makeDecision(std::string decisionText);
-	void takeTurn(Player* forWhom, Board on);
+	void takeTurn(Player* forWhom, Board on,Dice dice);
 	bool isHuman;
     protected:
 	Agent();

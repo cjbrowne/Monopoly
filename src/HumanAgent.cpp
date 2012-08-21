@@ -12,6 +12,7 @@
 #include <string>
 #include "HumanAgent.h"
 #include "Board.h"
+#include "Dice.h"
 
 HumanAgent::HumanAgent()
 {
@@ -30,6 +31,6 @@ bool HumanAgent::makeDecision(std::string decisionText)
     return rv;
 }
 
-void HumanAgent::takeTurn(Player* forWhom, Board on)
+void HumanAgent::takeTurn(Player* forWhom, Board on,Dice dice)
 {
 }

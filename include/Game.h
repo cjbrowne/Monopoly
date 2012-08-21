@@ -26,8 +26,11 @@ class Game
 
 	bool isOver;
     private:
+	void printPlayerList();
 	Piece pieceNameToType(std::string name);
+	std::string pieceTypeToName(Piece piece);
 	Player* currentPlayer;
+	Player* firstPlayer;
 	unsigned int numPlayers;
 	Rules rules;
 	Dice dice;

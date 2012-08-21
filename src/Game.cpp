@@ -15,11 +15,20 @@
 #include "ComputerAgent.h"
 #include "Game.h"
 
+/*
+ * Pretty basic string->bool conversion function
+ * Could probably flesh it out but it's only used in testing (the SDL version of this class won't need a string-to-bool function)
+ */
+bool toBool(std::string from)
+{
+    return (from == "true" || from == "yes" || from == "1" || from == "y");
+}
+
 Game::Game(Rules rules, unsigned int numPlayers)
 {
     std::string playerNameBuffer;
     std::string pieceNameBuffer;
-    bool humanBuffer;
+    std::string humanBuffer;
     this->isOver = false;
     if (numPlayers < 2 || numPlayers > 8)
     {
@@ -39,8 +48,8 @@ Game::Game(Rules rules, unsigned int numPlayers)
     std::cout << "Is player 1 a human player? ";
     std::cin >> humanBuffer;
     currentPlayer = new Player(playerNameBuffer,pieceNameToType(pieceNameBuffer));
-    currentPlayer->controller = (humanBuffer?(Agent*)new HumanAgent():(Agent*)new ComputerAgent());
-    Player* firstPlayer = currentPlayer;
+    currentPlayer->controller = (toBool(humanBuffer)?(Agent*)new HumanAgent():(Agent*)new ComputerAgent());
+    firstPlayer = currentPlayer;
     do
     {
 	std::cout << "Player " << numPlayers << ", what is your name? ";
@@ -53,15 +62,24 @@ Game::Game(Rules rules, unsigned int numPlayers)
 	std::cout << "Is player " << numPlayers << " a human player? ";
 	std::cin >> humanBuffer;
 	currentPlayer->next = new Player(playerNameBuffer,pieceNameToType(pieceNameBuffer));
+	currentPlayer->next->controller = (toBool(humanBuffer)?(Agent*)new HumanAgent():(Agent*)new ComputerAgent());
 	currentPlayer = currentPlayer->next;
 	this->numPlayers++;
     } while (this->numPlayers < numPlayers);
     currentPlayer->next = firstPlayer;
+    printPlayerList();
 }
 
-Game::~Game()
+void Game::printPlayerList()
 {
-    // TODO Auto-generated destructor stub
+    Player* rewindPoint = currentPlayer;
+    currentPlayer = firstPlayer;
+    do
+    {
+	std::cout << currentPlayer->name << " is playing as the " << pieceTypeToName(currentPlayer->piece) << "\n";
+	currentPlayer = currentPlayer->next;
+    } while(currentPlayer != firstPlayer);
+    currentPlayer = rewindPoint;
 }
 
 void Game::start()
@@ -75,16 +93,9 @@ void Game::start()
 void Game::takeTurn()
 {
     if(currentPlayer->controller->isHuman)
-	((HumanAgent*)(currentPlayer->controller))->takeTurn(currentPlayer,board);
+	((HumanAgent*)(currentPlayer->controller))->takeTurn(currentPlayer,board,dice);
     else
-	((ComputerAgent*)(currentPlayer->controller))->takeTurn(currentPlayer,board);
-
-    dice.roll();
-    std::cout << currentPlayer->name << " rolls: ";
-    dice.print();
-
-
-
+	((ComputerAgent*)(currentPlayer->controller))->takeTurn(currentPlayer,board,dice);
     currentPlayer = currentPlayer->next;
 }
 
@@ -110,4 +121,32 @@ Piece Game::pieceNameToType(std::string name)
     return BAD_CHOICE;
 }
 
+std::string Game::pieceTypeToName(Piece type)
+{
+    switch(type)
+    {
+	case CAR:
+	    return "car";
+	case BOAT:
+	    return "boat";
+	case DOG:
+	    return "dog";
+	case TOP_HAT:
+	    return "top hat";
+	case IRON:
+	    return "iron";
+	case WHEELBARROW:
+	    return "wheelbarrow";
+	case HORSE:
+	    return "horse";
+	case THIMBLE:
+	    return "thimble";
+	default:
+	    return "unknown";
+    }
+}
 
+Game::~Game()
+{
+    // TODO Auto-generated destructor stub
+}
