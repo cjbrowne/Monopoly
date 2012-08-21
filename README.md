@@ -2,15 +2,13 @@
 This project is a simple undertaking by Chris Browne to create a computerised version of the popular board game Monopoly.
 
 # Architecture
-## Server
-The server is automatically started and well integrated into the client.  In fact, the client must be chosen at compile-time,
-since it is compiled into a single executable.  I've chosen to keep it this way to simplify things for users of binary distributions
-of the game.  The server manages the board, the players' wealth and ownership and the randomised events (dice rolls, chance/community chest, etc.)
-
-## Client
-The client is responsible for displaying the game to the user (the Display class/module) and extracting input from the user (the Input class/module).
-Its simple design lends itself to extension and replacement, but initially I only plan to work on a text-based front-end for simplicity's sake.
-I may eventually develop an SDL frontend, pending developer interest.
+## Game class
+The Game class represents pretty well all of the ''output'' side of things, which means it needs replacing if you want to develop,
+say, an SDL version or a curses version.   
+## Agents
+Agents are the abstraction of the input side of things.  There are currently two agent classes available for use, HumanAgent and
+ComputerAgent.  In theory, in the future, more agents could be implemented (JoystickAgent vs KeyboardAgent, EasyAgent vs HardAgent
+and so on).  The Agent.h file contains an abstract base class upon which to base all of your Agent classes.
 
 # Legal bullshit
 Dear Hasbro,
