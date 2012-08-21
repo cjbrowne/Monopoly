@@ -58,26 +58,9 @@ void BoardSquare::landOn(Player* player, Rules rules)
 	    }
 	    else
 	    {
-		if (player->canAfford(property.getPrice()))
+		if (player->canAfford(property.getPrice()) && player->controller->makeDecision("Will you buy " + property.getName() + "?"))
 		{
-		    if (player->controller->isHuman)
-		    {
-			if (((HumanAgent*) (player->controller))->makeDecision(
-				"Will you buy " + property.getName() + "?"))
-			{
-			    player->purchaseProperty(property,
-				    property.getPrice());
-			    break;
-			}
-
-		    }
-		    else if (((ComputerAgent*) (player->controller))->makeDecision(
-			    "Will you buy " + property.getName() + "?"))
-		    {
-			player->purchaseProperty(property, property.getPrice());
-			break;
-		    }
-
+		    player->purchaseProperty(property,property.getPrice());
 		}
 		else
 		    auction();

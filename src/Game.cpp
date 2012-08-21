@@ -92,10 +92,7 @@ void Game::start()
 
 void Game::takeTurn()
 {
-    if(currentPlayer->controller->isHuman)
-	((HumanAgent*)(currentPlayer->controller))->takeTurn(currentPlayer,board,dice);
-    else
-	((ComputerAgent*)(currentPlayer->controller))->takeTurn(currentPlayer,board,dice);
+    currentPlayer->controller->takeTurn(currentPlayer,board,dice);
     currentPlayer = currentPlayer->next;
 }
 
@@ -148,5 +145,13 @@ std::string Game::pieceTypeToName(Piece type)
 
 Game::~Game()
 {
-    // TODO Auto-generated destructor stub
+    Player* tmp;
+    currentPlayer = firstPlayer;
+    do
+    {
+	tmp = currentPlayer;
+	currentPlayer = currentPlayer->next;
+	delete tmp;
+    } while (currentPlayer != firstPlayer);
+    delete firstPlayer;
 }

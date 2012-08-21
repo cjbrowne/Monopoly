@@ -18,6 +18,7 @@ class HumanAgent: public Agent
 	~HumanAgent();
 	bool makeDecision(std::string decisionText);
 	void takeTurn(Player* forWhom, Board on,Dice dice);
+	bool isHuman();
 };
 
 #endif /* HUMANAGENT_H_ */

@@ -22,15 +22,10 @@ class Dice;
 class Agent
 {
     public:
-	bool makeDecision(std::string decisionText);
-	void takeTurn(Player* forWhom, Board on,Dice dice);
-	bool isHuman;
-    protected:
-	Agent();
-	virtual	~Agent();
+	virtual bool makeDecision(std::string decisionText) = 0;
+	virtual void takeTurn(Player* forWhom, Board on,Dice dice) = 0;
+	virtual bool isHuman() = 0;
+	virtual ~Agent() {};
 };
-
-inline Agent::Agent(){}
-inline Agent::~Agent(){}
 
 #endif /* AGENT_H_ */

@@ -14,10 +14,10 @@ class ComputerAgent: public Agent
 {
     public:
 	ComputerAgent();
-	virtual
-	~ComputerAgent();
+	virtual ~ComputerAgent();
 	bool makeDecision(std::string decisionText);
 	void takeTurn(Player* forWhom, Board on,Dice dice);
+	bool isHuman();
 };
 
 #endif /* COMPUTERAGENT_H_ */

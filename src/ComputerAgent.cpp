@@ -12,7 +12,6 @@
 
 ComputerAgent::ComputerAgent()
 {
-    isHuman = false;
 }
 
 ComputerAgent::~ComputerAgent()
@@ -28,4 +27,11 @@ bool ComputerAgent::makeDecision(std::string decisionText)
 void ComputerAgent::takeTurn(Player* forWhom, Board on,Dice dice)
 {
 }
+
+bool ComputerAgent::isHuman()
+{
+    // computer agent is never human
+    return false;
+}
+
 

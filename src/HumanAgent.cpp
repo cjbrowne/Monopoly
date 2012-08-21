@@ -16,7 +16,6 @@
 
 HumanAgent::HumanAgent()
 {
-    isHuman = true;
 }
 
 HumanAgent::~HumanAgent()
@@ -34,3 +33,10 @@ bool HumanAgent::makeDecision(std::string decisionText)
 void HumanAgent::takeTurn(Player* forWhom, Board on,Dice dice)
 {
 }
+
+bool HumanAgent::isHuman()
+{
+    // human agent is always human
+    return true;
+}
+
