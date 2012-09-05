@@ -2,3 +2,6 @@
 .project
 .cproject
 /.settings
+*~
+/obj
+monopoly

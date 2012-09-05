@@ -9,6 +9,7 @@
  */
 
 #include <iostream>
+#include <cstdlib>
 #include <string>
 #include "HumanAgent.h"
 #include "Board.h"
@@ -50,14 +51,14 @@ void HumanAgent::takeTurn(Player* forWhom, Board board,Dice dice)
     do
     {
 	std::string prompt;
-	char* inputBuffer = malloc(1024);
+	char* inputBuffer = (char*)malloc(1024);
 	prompt += forWhom->name + " (" + rules.currencySymbol;
 	prompt += forWhom->cash * rules.currencySymbol + ") :";
 	std::cout << prompt;
 	std::cout.flush();
 	std::cin.getline(inputBuffer,1024);
 
-	switch(inputBuffer)
+	switch(menuOptions[inputBuffer])
 	{
 	    case ROLL:
 		roll_amount = dice.roll();

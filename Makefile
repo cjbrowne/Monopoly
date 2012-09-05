@@ -7,7 +7,7 @@ OBJ_FILES =$(patsubst src/%.cpp,obj/%.o,$(CPP_FILES))
 
 .PHONY: obj_dir
 
-Monopoly: $(OBJ_FILES)
+monopoly: $(OBJ_FILES)
 	$(LD) $(LDFLAGS) -o $@ $^
 
 
