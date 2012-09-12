@@ -57,36 +57,35 @@ void Menu::hide()
 
 void Menu::handleEvent(SDL_Event event)
 {
-
-	if(event.type == SDL_MOUSEBUTTONDOWN)
+	switch(event.type)
 	{
-		if(event.button.button == SDL_BUTTON_LEFT )
+		case SDL_MOUSEMOTION:
 		{
-			int x,y;
-			x = event.button.x;
-			y = event.button.y;
-			#if DEBUG == 3
-				std::cerr << "Left button pressed @ (" << x << "," << y << ")\n";
-			#endif
-			if(x >= buttonLocations[QUIT_GAME].x 
-				&& x <= buttonLocations[QUIT_GAME].x + buttonLocations[QUIT_GAME].w
-				&& y >= buttonLocations[QUIT_GAME].y
-				&& y <= buttonLocations[QUIT_GAME].y + buttonLocations[QUIT_GAME].h)
-			{
 
-				exitGame();
-			}
-			if(x >= buttonLocations[CLOSE_MENU].x
-				&& x <= buttonLocations[CLOSE_MENU].x + buttonLocations[CLOSE_MENU].w
-				&& y >= buttonLocations[CLOSE_MENU].y
-				&& y <= buttonLocations[CLOSE_MENU].y + buttonLocations[CLOSE_MENU].h)
-			{
-				hide();
-			}
-
-
+			break;
 		}
-
+		case SDL_MOUSEBUTTONDOWN:
+		{
+			if(event.button.button == SDL_BUTTON_LEFT )
+			{
+				int x,y;
+				Util util = context->util;
+				x = event.button.x;
+				y = event.button.y;
+				#if DEBUG == 3
+					std::cerr << "Left button pressed @ (" << x << "," << y << ")\n";
+				#endif
+				if(util.coordInsideRect(buttonLocations[QUIT_GAME],x,y))
+				{
+					exitGame();
+				}
+				else if(util.coordInsideRect(buttonLocations[CLOSE_MENU],x,y))
+				{
+					hide();
+				}
+			}
+			break;
+		}
 	}
 }
 
