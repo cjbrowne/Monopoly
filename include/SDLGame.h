@@ -2,7 +2,7 @@
 #define SDL_GAME_H
 
 // I prefer forward declarations to #include commands in a header
-union SDL_Event;
+class Menu;
 
 class SDLGame
 {
@@ -10,6 +10,9 @@ public:
 	SDLGame();
 	~SDLGame();
 	void start();
+	void stop();
+	SDL_Surface* getRenderContext();
+	SDL_Rect resolution;
 private:
 	// private methods
 	bool init();
@@ -20,6 +23,7 @@ private:
 	// private fields
 	bool running;
 	SDL_Surface* screen;
+	Menu* mainMenu;
 };
 
 
