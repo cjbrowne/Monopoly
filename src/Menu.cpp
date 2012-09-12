@@ -1,4 +1,5 @@
 #include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
 #ifdef DEBUG
 #include <iostream>
 #endif
@@ -29,7 +30,7 @@ void Menu::init()
 {
 	// render directly to screen
 	renderTarget = context->getRenderContext();
-	SDL_Surface* menuBufferTMP = SDL_LoadBMP("img/menu_blank.bmp"); // set up the menu buffer with a blank menu to start with
+	SDL_Surface* menuBufferTMP = IMG_Load("img/menu_blank.png"); // set up the menu buffer with a blank menu to start with
 	if(menuBufferTMP == NULL)
 	{
 		#if DEBUG > 0
@@ -39,16 +40,17 @@ void Menu::init()
 		return;
 	}
 	menuBuffer = SDL_DisplayFormatAlpha(menuBufferTMP);
+	
 	SDL_FreeSurface(menuBufferTMP);
 }
 
-void Menu::showMenu()
+void Menu::show()
 {
 	shown = true;
 	render();
 }
 
-void Menu::hideMenu()
+void Menu::hide()
 {
 	shown = false;
 }
@@ -73,6 +75,13 @@ void Menu::handleEvent(SDL_Event event)
 			{
 
 				exitGame();
+			}
+			if(x >= buttonLocations[CLOSE_MENU].x
+				&& x <= buttonLocations[CLOSE_MENU].x + buttonLocations[CLOSE_MENU].w
+				&& y >= buttonLocations[CLOSE_MENU].y
+				&& y <= buttonLocations[CLOSE_MENU].y + buttonLocations[CLOSE_MENU].h)
+			{
+				hide();
 			}
 
 

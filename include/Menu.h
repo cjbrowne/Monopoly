@@ -23,8 +23,8 @@ public:
 	Menu(SDLGame* context);
 	~Menu();
 	void exitGame();
-	void showMenu();
-	void hideMenu();
+	void show();
+	void hide();
 	void init();
 	void setRules(char* filename);
 	void handleEvent(SDL_Event event);
