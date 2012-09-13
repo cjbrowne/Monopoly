@@ -30,6 +30,9 @@ SDLGame::SDLGame()
 	menuButtonLoc.h = 120;
 	menuButtonLoc.x = resolution.w - menuButtonLoc.w - 15;
 	menuButtonLoc.y = 5;
+
+	// classic theme by default
+	theme = "classic";
 }
 
 void SDLGame::start()
@@ -106,7 +109,7 @@ void SDLGame::render()
 	SDL_FillRect(screen,NULL,0x00000000);
 
 	// now render the board
-	board->render(screen);
+	board->render(this);
 
 	// render the menu just before flipping, so that it appears in front of everything else
 	if(mainMenu->shown) 

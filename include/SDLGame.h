@@ -18,6 +18,7 @@ public:
 	SDL_Rect resolution;
 	Util util;
 	bool screenUpdated;
+	std::string theme;
 private:
 	// private methods
 	bool init();

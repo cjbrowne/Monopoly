@@ -104,7 +104,7 @@ void Menu::handleEvent(SDL_Event event)
 				int x,y;
 				x = event.button.x;
 				y = event.button.y;
-				#if DEBUG == 3
+				#if DEBUG >= 3
 					std::cerr << "Left button pressed @ (" << x << "," << y << ")\n";
 				#endif
 				if(util.coordInsideRect(buttonLocations[QUIT_GAME],x,y))

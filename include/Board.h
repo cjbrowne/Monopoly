@@ -16,6 +16,7 @@
  class ChanceDeck;
  class BoardSquare;
  class Player;
+ class SDLGame;
 
 class Board
 {
@@ -25,10 +26,13 @@ class Board
 	~Board();
 	void movePlayer(Player* whom,unsigned int howFar);
 	#ifdef SDL_VERSION
-	void render(SDL_Surface* target);
+	void render(SDLGame* context);
 	#endif
 
     private:
+    #ifdef SDL_VERSION
+    SDL_Rect location;
+    #endif
 	BoardSquare* squares;
 	ChanceDeck* chance;
 	CommunityDeck* community;
