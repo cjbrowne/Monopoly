@@ -10,7 +10,7 @@ OBJ_FILES = $(patsubst src/%.cpp,obj/%.o,$(CPP_FILES))
 .PHONY: default
 
 # add SDL stuff to the *FLAGS variables for the release build
-monopoly: CFLAGS += $(shell sdl-config --cflags) $(shell pkg-config SDL_image --cflags)
+monopoly: CFLAGS += $(shell sdl-config --cflags) $(shell pkg-config SDL_image --cflags) -DSDL_VERSION
 monopoly: LDFLAGS += $(shell sdl-config --libs) $(shell pkg-config SDL_image --libs)
 
 # add debugging flags to the *FLAGS variables for the debug build

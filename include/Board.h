@@ -8,9 +8,14 @@
 #ifndef BOARD_H_
 #define BOARD_H_
 
-#include "CommunityDeck.h"
-#include "ChanceDeck.h"
-#include "BoardSquare.h"
+#ifdef SDL_VERSION
+	#include <SDL/SDL.h>
+#endif
+
+ class CommunityDeck;
+ class ChanceDeck;
+ class BoardSquare;
+ class Player;
 
 class Board
 {
@@ -19,10 +24,14 @@ class Board
 	virtual
 	~Board();
 	void movePlayer(Player* whom,unsigned int howFar);
+	#ifdef SDL_VERSION
+	void render(SDL_Surface* target);
+	#endif
+
     private:
-	BoardSquare squares[40];
-	ChanceDeck chance;
-	CommunityDeck community;
+	BoardSquare* squares;
+	ChanceDeck* chance;
+	CommunityDeck* community;
 };
 
 #endif /* BOARD_H_ */

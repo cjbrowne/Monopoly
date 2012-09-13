@@ -102,7 +102,7 @@ void SDLGame::logic()
 void SDLGame::render()
 {
 	// start by clearing the screen
-	SDL_FillRect(screen,NULL,0x0000FF00);
+	SDL_FillRect(screen,NULL,0x00000000);
 
 	// render the menu just before flipping, so that it appears in front of everything else
 	if(mainMenu->shown) mainMenu->render();

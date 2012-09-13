@@ -5,15 +5,17 @@
  *      Author: Chris Browne
  */
 
+#ifdef SDL_VERSION
+ #include <SDL/SDL.h>
+#endif
 #include "Board.h"
+#include "CommunityDeck.h"
+#include "ChanceDeck.h"
+#include "BoardSquare.h"
 
 Board::Board()
 {
-    squares[0] = BoardSquare(GO_SQUARE);
-    // squares[1] = BoardSquare(OLD_KENT_ROAD);
-    squares[2] = BoardSquare(INCOME_TAX);
-    // squares[3] = BoardSquare(WHITECHAPEL_ROAD);
-
+    squares = BoardSquare::getFullBoard();
 }
 
 Board::~Board()
@@ -25,3 +27,9 @@ void Board::movePlayer(Player* whom, unsigned int howFar)
 {
 }
 
+#ifdef SDL_VERSION
+void Board::render(SDL_Surface* target)
+{
+
+}
+#endif

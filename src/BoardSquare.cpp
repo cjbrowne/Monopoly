@@ -11,21 +11,28 @@
 #include "HumanAgent.h"
 #include "ComputerAgent.h"
 
-BoardSquare::BoardSquare()
+BoardSquare::BoardSquare(BoardSquare* previous)
 {
-    type = UNINITIALISED;
-    owner = 0;
+	owner = NULL;
+	occupiers = NULL;
+	if(previous == NULL)
+	{
+		value = GO;
+		type = GO_SQUARE;
+		cash = 0;
+		property = NULL;
+	}
+	switch(previous->value)
+	{
+
+	}
+
 }
 
-BoardSquare::BoardSquare(SquareType type)
+BoardSquare::~BoardSquare()
 {
-    this->type = type;
-}
-
-BoardSquare::BoardSquare(Property property)
-{
-    this->type = PROPERTY;
-    this->property = property;
+	if(owner != NULL) delete owner;
+	if(occupiers != NULL) delete occupiers;
 }
 
 void BoardSquare::landOn(Player* player, Rules rules)
@@ -45,22 +52,22 @@ void BoardSquare::landOn(Player* player, Rules rules)
 		player->receiveCash(rules.salary, "Landed on GO.");
 	    break;
 	case PROPERTY:
-	    if (owner != 0)
+	    if (owner != NULL)
 	    {
 		if (rules.rentOnSquare)
 		{
-		    cash += property.getRent();
+		    cash += property->getRent();
 		}
 		else
 		{
-		    player->payRent(owner, property.getRent());
+		    player->payRent(owner, property->getRent());
 		}
 	    }
 	    else
 	    {
-		if (player->canAfford(property.getPrice()) && player->controller->makeDecision("Will you buy " + property.getName() + "?"))
+		if (player->canAfford(property->getPrice()) && player->controller->makeDecision("Will you buy " + property->getName() + "?"))
 		{
-		    player->purchaseProperty(property,property.getPrice());
+		    player->purchaseProperty(*property,property->getPrice());
 		}
 		else
 		    auction();
@@ -84,3 +91,7 @@ void BoardSquare::auction()
     // TODO: implement auction method
 }
 
+BoardSquare* BoardSquare::getFullBoard()
+{
+	return NULL;
+}
