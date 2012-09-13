@@ -67,6 +67,7 @@ void Menu::show()
 void Menu::hide()
 {
 	shown = false;
+	context->screenUpdated = true;
 }
 
 void Menu::handleEvent(SDL_Event event)
@@ -81,19 +82,19 @@ void Menu::handleEvent(SDL_Event event)
 			y = event.motion.y;
 			if(util.coordInsideRect(buttonLocations[QUIT_GAME],x,y))
 			{
+				if(highlightedButton != QUIT_GAME) context->screenUpdated = true;
 				highlightedButton = QUIT_GAME;
 			}
 			else if(util.coordInsideRect(buttonLocations[CLOSE_MENU],x,y))
 			{
+				if(highlightedButton != CLOSE_MENU) context->screenUpdated = true;
 				highlightedButton = CLOSE_MENU;
 			}
 			else
 			{
+				if(highlightedButton != NONE_HIGHLIGHTED) context->screenUpdated = true;
 				highlightedButton = NONE_HIGHLIGHTED;
 			}
-			// technically, we don't need to do this every single time the mouse moves but it's much
-			// easier than working out if we need to or not and doesn't hit performance too hard
-			context->screenUpdated = true;
 			break;
 		}
 		case SDL_MOUSEBUTTONDOWN:
