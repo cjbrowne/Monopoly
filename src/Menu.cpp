@@ -42,6 +42,20 @@ void Menu::init()
 	menuBuffer = SDL_DisplayFormatAlpha(menuBufferTMP);
 	
 	SDL_FreeSurface(menuBufferTMP);
+
+	SDL_Surface* menuSelectedTMP = IMG_Load("img/menu_selected.png");
+	if(menuSelectedTMP == NULL)
+	{
+		#if DEBUG > 1
+		std::cerr << "WARNING: Menu selected image file could not be loaded, proceeding with no hover animation\n";
+		#endif
+		menuSelected = menuBuffer;
+		SDL_FreeSurface(menuSelectedTMP);
+		return;
+	}
+	menuSelected = SDL_DisplayFormatAlpha(menuSelectedTMP);
+
+	SDL_FreeSurface(menuSelectedTMP);
 }
 
 void Menu::show()
@@ -57,11 +71,26 @@ void Menu::hide()
 
 void Menu::handleEvent(SDL_Event event)
 {
+	Util util = context->util;
 	switch(event.type)
 	{
 		case SDL_MOUSEMOTION:
 		{
-
+			int x,y;
+			x = event.motion.x;
+			y = event.motion.y;
+			if(util.coordInsideRect(buttonLocations[QUIT_GAME],x,y))
+			{
+				highlightedButton = QUIT_GAME;
+			}
+			else if(util.coordInsideRect(buttonLocations[CLOSE_MENU],x,y))
+			{
+				highlightedButton = CLOSE_MENU;
+			}
+			else
+			{
+				highlightedButton = NONE_HIGHLIGHTED;
+			}
 			break;
 		}
 		case SDL_MOUSEBUTTONDOWN:
@@ -69,7 +98,6 @@ void Menu::handleEvent(SDL_Event event)
 			if(event.button.button == SDL_BUTTON_LEFT )
 			{
 				int x,y;
-				Util util = context->util;
 				x = event.button.x;
 				y = event.button.y;
 				#if DEBUG == 3
@@ -114,6 +142,19 @@ void Menu::render()
 	menuSpace.x = (renderTarget->w / 2) - (MENU_WIDTH/2);
 	menuSpace.y = (renderTarget->h / 2) - (MENU_HEIGHT/2);
 
+	if(highlightedButton != NONE_HIGHLIGHTED)
+	{
+		SDL_Rect locationInsideFile;
+		short int margin_x = (context->resolution.w - MENU_WIDTH)/2;
+		short int margin_y = (context->resolution.h - MENU_HEIGHT)/2;
+
+		locationInsideFile.x = buttonLocations[highlightedButton].x - margin_x;
+		locationInsideFile.y = buttonLocations[highlightedButton].y - margin_y;
+		locationInsideFile.w = buttonLocations[highlightedButton].w;
+		locationInsideFile.h = buttonLocations[highlightedButton].h;
+
+		SDL_BlitSurface(menuSelected,&locationInsideFile,renderTarget,&buttonLocations[highlightedButton]);
+	}
 
 	SDL_BlitSurface(menuBuffer,NULL,renderTarget,&menuSpace);
 

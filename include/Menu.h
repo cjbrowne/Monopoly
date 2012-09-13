@@ -14,7 +14,8 @@ enum Button
 	PLACEHOLDER_2=1,
 	PLACEHOLDER_3=2,
 	CLOSE_MENU=3,
-	QUIT_GAME=4
+	QUIT_GAME=4,
+	NONE_HIGHLIGHTED // should just select the highest available option
 };
 
 class Menu
@@ -35,9 +36,11 @@ public:
 private:
 	SDL_Surface* renderTarget;
 	SDL_Surface* menuBuffer;
+	SDL_Surface* menuSelected;
 	SDLGame* context;
 	SDL_Rect buttonLocations[NUM_BUTTONS];
 	bool deferredDFACall;
+	Button highlightedButton;
 };
 
 #endif
