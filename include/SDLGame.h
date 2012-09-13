@@ -5,6 +5,7 @@
 
 // I prefer forward declarations to #include commands in a header
 class Menu;
+class Board;
 
 class SDLGame
 {
@@ -16,6 +17,7 @@ public:
 	SDL_Surface* getRenderContext();
 	SDL_Rect resolution;
 	Util util;
+	bool screenUpdated;
 private:
 	// private methods
 	bool init();
@@ -30,6 +32,7 @@ private:
 	Menu* mainMenu;
 	SDL_Rect menuButtonLoc;
 	SDL_Surface* menuButton;
+	Board* board;
 	unsigned int frames;
 };
 

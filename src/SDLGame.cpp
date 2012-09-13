@@ -11,6 +11,7 @@
 #include <SDL/SDL_image.h>
 #include "SDLGame.h"
 #include "Menu.h"
+#include "Board.h"
 
 SDLGame::SDLGame()
 {
@@ -104,11 +105,27 @@ void SDLGame::render()
 	// start by clearing the screen
 	SDL_FillRect(screen,NULL,0x00000000);
 
-	// render the menu just before flipping, so that it appears in front of everything else
-	if(mainMenu->shown) mainMenu->render();
-	else SDL_BlitSurface(menuButton,NULL,screen,&menuButtonLoc); // render the menu button if the menu isn't already shown
+	// now render the board
+	board->render(screen);
 
-	SDL_Flip(screen);
+	// render the menu just before flipping, so that it appears in front of everything else
+	if(mainMenu->shown) 
+	{
+		mainMenu->render();
+	}
+	else 
+	{
+		SDL_BlitSurface(menuButton,NULL,screen,&menuButtonLoc); // render the menu button if the menu isn't already shown
+		screenUpdated = true;
+	}
+
+
+	// should improve performance a lot
+	if(screenUpdated)
+	{
+		screenUpdated = false;
+		SDL_Flip(screen);
+	}
 }
 
 SDLGame::~SDLGame()

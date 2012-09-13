@@ -7,6 +7,7 @@
 
 #ifdef SDL_VERSION
  #include <SDL/SDL.h>
+ #include <SDL/SDL_image.h>
 #endif
 #include "Board.h"
 #include "CommunityDeck.h"
@@ -30,6 +31,8 @@ void Board::movePlayer(Player* whom, unsigned int howFar)
 #ifdef SDL_VERSION
 void Board::render(SDL_Surface* target)
 {
-
+	SDL_Surface* blankBoardTMP;
+	SDL_Surface* blankBoard;
+	blankBoardTMP = IMG_Load("img/blank_board.png");
 }
 #endif

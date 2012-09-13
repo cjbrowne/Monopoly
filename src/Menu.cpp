@@ -61,7 +61,7 @@ void Menu::init()
 void Menu::show()
 {
 	shown = true;
-	render();
+	context->screenUpdated = true;
 }
 
 void Menu::hide()
@@ -91,6 +91,9 @@ void Menu::handleEvent(SDL_Event event)
 			{
 				highlightedButton = NONE_HIGHLIGHTED;
 			}
+			// technically, we don't need to do this every single time the mouse moves but it's much
+			// easier than working out if we need to or not and doesn't hit performance too hard
+			context->screenUpdated = true;
 			break;
 		}
 		case SDL_MOUSEBUTTONDOWN:
