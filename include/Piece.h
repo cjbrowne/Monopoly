@@ -3,6 +3,14 @@
 
 class SDLGame;
 
+enum Side
+{
+  SOUTH,
+  WEST,
+  NORTH,
+  EAST
+};
+
 class Piece
 {
 public:
@@ -11,6 +19,7 @@ public:
 	void render(SDL_Rect location);
 	std::string name;
 	void SDLInit(SDLGame* context);
+        void loadImage(Side side);
 
 	
 private:

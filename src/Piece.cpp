@@ -31,14 +31,37 @@ Piece::~Piece()
 void Piece::SDLInit(SDLGame* context)
 {
 	this->context = context;
-	std::stringstream imgLocation;
-	imgLocation << "img/themes/" << context->theme << name;
-	SDL_Surface* imageTMP = IMG_Load(imgLocation.str().c_str());
-	if(imageTMP == NULL)
-	{
-		imageTMP = IMG_Load("img/missing.png");
-	}
-	image = SDL_DisplayFormatAlpha(imageTMP);
+        // by default, we assume to be on the Go square
+	loadImage(SOUTH);
+}
+
+void Piece::loadImage(Side side)
+{
+  std::stringstream imageLocation;
+  imageLocation << "img/themes/" << context->theme << name;
+  switch(side)
+  {
+    case SOUTH:
+      imageLocation << "_south.png";
+      break;
+    case WEST:
+      imageLocation << "_west.png";
+      break;
+    case NORTH:
+      imageLocation << "_north.png";
+      break;
+    case EAST:
+      imageLocation << "_east.png";
+      break;
+    default:
+      imageLocation << ".png";
+  }
+  SDL_Surface* imageTMP = IMG_Load(imageLocation.str().c_str());
+  if(imageTMP == NULL)
+  {
+    imageTMP = IMG_Load("img/missing.png");
+  }
+  image = SDL_DisplayFormatAlpha(imageTMP);
 }
 
 inline bool locationChanged(SDL_Rect a,SDL_Rect b)

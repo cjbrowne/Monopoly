@@ -31,14 +31,15 @@ class Board
 	void render();
 	void SDLInit();
 	void forceUpdate();
+        void testDrive();
 	#endif
 
     private:
     #ifdef SDL_VERSION
-    SDL_Rect location;
-    SDL_Surface* blankBoard;
-    SDLGame* context;
-    bool updated;
+        SDL_Rect location;
+        SDL_Surface* blankBoard;
+        SDLGame* context;
+        bool updated;
     #endif
 	BoardSquare* squares;
 	ChanceDeck* chance;

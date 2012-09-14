@@ -40,6 +40,7 @@ void Board::movePlayer(Player* whom, unsigned int howFar)
 
 Board::Board(SDLGame* context)
 {
+        squares = BoardSquare::getFullBoard(context);
 	this->context = context;
 	location.w = 768;
     location.h = 768;
@@ -68,6 +69,14 @@ void Board::SDLInit()
 	}
 	blankBoard = SDL_DisplayFormatAlpha(blankBoardTMP);
 	SDL_FreeSurface(blankBoardTMP);
+}
+
+void Board::testDrive()
+{
+  Piece* doggy = new Piece("dog");
+  unsigned int i = 0;
+  for(i=0;i<40;i++)
+    doggy->render(squares[i].location);
 }
 
 void Board::render()

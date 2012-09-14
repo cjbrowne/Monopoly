@@ -20,6 +20,10 @@ public:
 	Util util;
 	bool screenUpdated;
 	std::string theme;
+        Board* board;
+        PlayerList* players;
+        PropertyDeck* bankOwnedProperties;
+        
 private:
 	// private methods
 	bool init();
@@ -34,9 +38,8 @@ private:
 	Menu* mainMenu;
 	SDL_Rect menuButtonLoc;
 	SDL_Surface* menuButton;
-	Board* board;
 	unsigned int frames;
-	PlayerList players;
+	
 };
 
 

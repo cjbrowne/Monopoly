@@ -29,67 +29,67 @@ enum SquareType
 
 enum SquareValue
 {
-    GO,
-    OLD_KENT,
-    COMMUNITY_CHEST_A,
-    WHITECHAPEL,
-    INCOME_TAX,
-    KINGS_CROSS,
-    THE_ANGEL_ISLINGTON,
-    CHANCE_A,
-    EUSTON,
-    PENTONVILLE,
-    JAIL,
-    PALL_MALL,
-    ELECTRIC_COMPANY,
-    WHITEHALL,
-    NORTHUMBERLAND,
-    MARYLEBONE,
-    BOW_STREET,
-    COMMUNITY_CHEST_B,
-    MARLBOROUGH_STREET,
-    VINE_STREET,
-    FREE_PARKING_VALUE,
-    STRAND,
-    CHANCE_B,
-    FLEET_STREET,
-    TRAFALGAR,
-    FENCHURCH_ST,
-    LEICESTER_SQUARE,
-    COVENTRY_STREET,
-    WATER_WORKS,
-    PICCADILLY,
-    GOTO_JAIL,
-    REGENT_STREET,
-    OXFORD_STREET,
-    COMMUNITY_CHEST_C,
-    BOND_STREET,
-    LIVERPOOL_ST,
-    CHANCE_C,
-    PARK_LANE,
-    SUPER_TAX,
-    MAYFAIR
+    GO=0,
+    OLD_KENT=1,
+    COMMUNITY_CHEST_A=2,
+    WHITECHAPEL=3,
+    INCOME_TAX=4,
+    KINGS_CROSS=5,
+    THE_ANGEL_ISLINGTON=6,
+    CHANCE_A=7,
+    EUSTON=8,
+    PENTONVILLE=9,
+    JAIL=10,
+    PALL_MALL=11,
+    ELECTRIC_COMPANY=12,
+    WHITEHALL=13,
+    NORTHUMBERLAND=14,
+    MARYLEBONE=15,
+    BOW_STREET=16,
+    COMMUNITY_CHEST_B=17,
+    MARLBOROUGH_STREET=18,
+    VINE_STREET=19,
+    FREE_PARKING_VALUE=20,
+    STRAND=21,
+    CHANCE_B=22,
+    FLEET_STREET=23,
+    TRAFALGAR=24,
+    FENCHURCH_ST=25,
+    LEICESTER_SQUARE=26,
+    COVENTRY_STREET=27,
+    WATER_WORKS=28,
+    PICCADILLY=29,
+    GOTO_JAIL=30,
+    REGENT_STREET=31,
+    OXFORD_STREET=32,
+    COMMUNITY_CHEST_C=33,
+    BOND_STREET=34,
+    LIVERPOOL_ST=35,
+    CHANCE_C=36,
+    PARK_LANE=37,
+    SUPER_TAX=38,
+    MAYFAIR=39
 };
 
 class BoardSquare
 {
     public:
-	BoardSquare(BoardSquare* previous);
-    ~BoardSquare();
+	BoardSquare();
+        ~BoardSquare();
 	void landOn(Player* player, Rules rules);
 	void pass(Player* player, Rules rules);
-	static BoardSquare* getFullBoard();
-    BoardSquare* next;
+	static BoardSquare* getFullBoard(SDLGame* context);
+        
 	unsigned int cash; // rent if property and rentOnSquare is true, fines if free parking and strictFreeParking is false
-    
+        SDL_Rect location;
+        SquareType type;
+        SquareValue value;
+        Property* property;
+        Player* owner;
+        PlayerList* occupiers;
 
     private:
 	void auction();
-	SquareType type;
-    SquareValue value;
-	Property* property;
-	Player* owner;
-	PlayerList* occupiers;
 
 };
 

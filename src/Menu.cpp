@@ -5,6 +5,7 @@
 #endif
 #include "Menu.h"
 #include "SDLGame.h"
+#include "Board.h"
 
 
 Menu::Menu(SDLGame* context)
@@ -82,18 +83,32 @@ void Menu::handleEvent(SDL_Event event)
 			y = event.motion.y;
 			if(util.coordInsideRect(buttonLocations[QUIT_GAME],x,y))
 			{
-				if(highlightedButton != QUIT_GAME) context->screenUpdated = true;
-				highlightedButton = QUIT_GAME;
+				if(highlightedButton != QUIT_GAME)
+                                {
+                                  context->screenUpdated = true;
+                                  highlightedButton = QUIT_GAME;
+                                }
 			}
 			else if(util.coordInsideRect(buttonLocations[CLOSE_MENU],x,y))
 			{
-				if(highlightedButton != CLOSE_MENU) context->screenUpdated = true;
-				highlightedButton = CLOSE_MENU;
+                                if(highlightedButton != CLOSE_MENU) 
+                                {
+                                  context->screenUpdated = true;
+                                  highlightedButton = CLOSE_MENU;
+                                }
 			}
+			else if(util.coordInsideRect(buttonLocations[PLACEHOLDER_1],x,y))
+                        {
+                          if(highlightedButton != PLACEHOLDER_1)
+                          {
+                            context->screenUpdated = true;
+                            highlightedButton = PLACEHOLDER_1;
+                          }
+                        }
 			else
 			{
-				if(highlightedButton != NONE_HIGHLIGHTED) context->screenUpdated = true;
-				highlightedButton = NONE_HIGHLIGHTED;
+                          context->screenUpdated = true;
+                          highlightedButton = NONE_HIGHLIGHTED;
 			}
 			break;
 		}
@@ -115,6 +130,10 @@ void Menu::handleEvent(SDL_Event event)
 				{
 					hide();
 				}
+				else if(util.coordInsideRect(buttonLocations[PLACEHOLDER_1],x,y))
+                                {
+                                  context->board->testDrive();
+                                }
 			}
 			break;
 		}

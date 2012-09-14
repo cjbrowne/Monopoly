@@ -7,26 +7,16 @@
 #if DEBUG >= 3
 #include <iostream>
 #endif
+#include <SDL/SDL.h>
 #include "BoardSquare.h"
 #include "HumanAgent.h"
 #include "ComputerAgent.h"
+#include "SDLGame.h"
 
-BoardSquare::BoardSquare(BoardSquare* previous)
+BoardSquare::BoardSquare()
 {
 	owner = NULL;
 	occupiers = NULL;
-	if(previous == NULL)
-	{
-		value = GO;
-		type = GO_SQUARE;
-		cash = 0;
-		property = NULL;
-	}
-	switch(previous->value)
-	{
-
-	}
-
 }
 
 BoardSquare::~BoardSquare()
@@ -91,7 +81,44 @@ void BoardSquare::auction()
     // TODO: implement auction method
 }
 
-BoardSquare* BoardSquare::getFullBoard()
+// TODO: add initialization of rv[i].property field
+// note: this will require a LOT of grunt work, so I'm putting it off
+// for the time being
+BoardSquare* BoardSquare::getFullBoard(SDLGame* context)
 {
-	return NULL;
+	BoardSquare* rv = new BoardSquare[40];
+        unsigned int i;
+        for(i=0;i<40;i++)
+        {
+          rv[i].owner = NULL;
+          rv[i].occupiers = NULL;
+          rv[i].cash = 0;
+          // bit of a sneaky trick, but I don't care
+          rv[i].value = i; 
+          
+          // TODO: pick up where you left off here
+          // rv[i].location.x = 
+        }
+        
+        rv[0].type = GO_SQUARE;
+        rv[0].property = NULL;
+        rv[0].occupiers = context->players;
+        
+        rv[1].type = PROPERTY;  
+        
+        rv[2].type = COMMUNITY_CHEST;
+        
+        rv[3].type = PROPERTY;
+        
+        rv[4].type = TAX;
+        
+        rv[5].type = STATION;
+        
+        rv[6].type = PROPERTY;
+        
+        rv[7].type = CHANCE;
+        
+        // TODO: finish this function!
+        
+        return rv;
 }
