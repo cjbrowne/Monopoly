@@ -21,17 +21,24 @@
 class Board
 {
     public:
+    #ifndef SDL_VERSION
 	Board();
-	virtual
+	#endif
 	~Board();
 	void movePlayer(Player* whom,unsigned int howFar);
 	#ifdef SDL_VERSION
-	void render(SDLGame* context);
+	Board(SDLGame* context);
+	void render();
+	void SDLInit();
+	void forceUpdate();
 	#endif
 
     private:
     #ifdef SDL_VERSION
     SDL_Rect location;
+    SDL_Surface* blankBoard;
+    SDLGame* context;
+    bool updated;
     #endif
 	BoardSquare* squares;
 	ChanceDeck* chance;

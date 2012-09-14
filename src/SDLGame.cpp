@@ -33,6 +33,8 @@ SDLGame::SDLGame()
 
 	// classic theme by default
 	theme = "classic";
+
+	board = new Board(this);
 }
 
 void SDLGame::start()
@@ -72,6 +74,8 @@ bool SDLGame::init()
 	if(SDL_Init(SDL_INIT_EVERYTHING) < 0) return false;
 	if((screen = SDL_SetVideoMode(resolution.w,resolution.h,32,SDL_HWSURFACE | SDL_DOUBLEBUF)) == NULL) return false;
 
+	// do the SDL initialization of the board
+	board->SDLInit();
 	// set up the menu button after the screen has been set
 	SDL_Surface* menuButtonTMP = IMG_Load("img/menu_button.png");
 	menuButton = SDL_DisplayFormatAlpha(menuButtonTMP);
@@ -108,21 +112,19 @@ void SDLGame::render()
 	// start by clearing the screen
 	SDL_FillRect(screen,NULL,0x00000000);
 
-	// now render the board
-	board->render(this);
-
-	// render the menu just before flipping, so that it appears in front of everything else
-	if(mainMenu->shown) 
-	{
-		mainMenu->render();
-	}
-	else 
+	if(!mainMenu->shown)
 	{
 		SDL_BlitSurface(menuButton,NULL,screen,&menuButtonLoc); // render the menu button if the menu isn't already shown
 		screenUpdated = true;
+		board->render();
 	}
-
-
+	else 
+	{
+		// render the board first, then the menu on top of it
+		board->render();
+		mainMenu->render();
+	}
+	
 	// should improve performance a lot
 	if(screenUpdated)
 	{
@@ -135,6 +137,7 @@ SDLGame::~SDLGame()
 {
 	SDL_Quit();
 	delete mainMenu;
+	delete board;
 }
 
 SDL_Surface* SDLGame::getRenderContext()
