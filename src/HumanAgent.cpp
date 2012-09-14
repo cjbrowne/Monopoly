@@ -14,6 +14,7 @@
 #include "HumanAgent.h"
 #include "Board.h"
 #include "Dice.h"
+ #include "Player.h"
 
 HumanAgent::HumanAgent(Rules r)
 {
@@ -50,22 +51,22 @@ void HumanAgent::takeTurn(Player* forWhom, Board board,Dice dice)
     bool turnEnded = false;
     do
     {
-	std::string prompt;
-	char* inputBuffer = (char*)malloc(1024);
-	prompt += forWhom->name + " (" + rules.currencySymbol;
-	prompt += forWhom->cash * rules.currencySymbol + ") :";
-	std::cout << prompt;
-	std::cout.flush();
-	std::cin.getline(inputBuffer,1024);
+    	std::string prompt;
+    	char* inputBuffer = (char*)malloc(1024);
+    	prompt += forWhom->name + " (" + rules.currencySymbol;
+    	prompt += forWhom->cash * rules.currencySymbol + ") :";
+    	std::cout << prompt;
+    	std::cout.flush();
+    	std::cin.getline(inputBuffer,1024);
 
-	switch(menuOptions[inputBuffer])
-	{
-	    case ROLL:
-		roll_amount = dice.roll();
-		std::cout << "Rolled: ";
-		dice.print();
-		board.movePlayer(forWhom,roll_amount);
-	}
+    	switch(menuOptions[inputBuffer])
+    	{
+    	    case ROLL:
+    		roll_amount = dice.roll();
+    		std::cout << "Rolled: ";
+    		dice.print();
+    		board.movePlayer(forWhom,roll_amount);
+    	}
 
     } while(!turnEnded);
 }

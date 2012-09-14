@@ -8,47 +8,41 @@
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
+#include <SDL/SDL.h>
 #include <string>
-#include "Agent.h"
 #include "PropertyDeck.h"
+#include "Piece.h"
 
-enum Piece
-{
-    BAD_CHOICE,
-    CAR,
-    BOAT,
-    DOG,
-    TOP_HAT,
-    IRON,
-    WHEELBARROW,
-    HORSE,
-    THIMBLE,
-};
+class Agent;
 
 class Player
 {
-    public:
-	Player(std::string name,Piece chosenPiece);
+public:
+	Player(const std::string &name,Piece chosenPiece,SDLGame* context);
 	virtual
 	~Player();
 	void
-	receiveCash(unsigned int amount, std::string reason);
+	receiveCash(unsigned int amount);
 	void
 	payRent(Player* to, unsigned int amount);
 	bool
 	canAfford(unsigned int amount);
 	void
 	purchaseProperty(Property property, unsigned int cost);
+	bool resolveDebt(unsigned int amount);
 	Player* next;
 	Agent* controller;
 	std::string name;
 	Piece piece;
 	unsigned int cash;
-    private:
+	bool isOut;
+
+private:
 	PropertyDeck properties;
 	bool hasGetOutOfJailFreeChance;
 	bool hasGetOutOfJailFreeCommunity;
 	bool inJail; // used for distinguishing between "jail" and "just visiting"
+	SDLGame* context;
 };
 
 #endif /* PLAYER_H_ */

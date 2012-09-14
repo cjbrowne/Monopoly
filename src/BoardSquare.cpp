@@ -47,9 +47,9 @@ void BoardSquare::landOn(Player* player, Rules rules)
 	    return;
 	case GO_SQUARE:
 	    if (rules.doubleIfLandOnGo)
-		player->receiveCash(rules.salary * 2, "Landed on GO!");
+		player->receiveCash(rules.salary * 2);
 	    else
-		player->receiveCash(rules.salary, "Landed on GO.");
+		player->receiveCash(rules.salary);
 	    break;
 	case PROPERTY:
 	    if (owner != NULL)

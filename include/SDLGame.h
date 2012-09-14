@@ -2,6 +2,7 @@
 #define SDL_GAME_H
 
 #include "Util.h"
+#include "PlayerList.h"
 
 // I prefer forward declarations to #include commands in a header
 class Menu;
@@ -35,6 +36,7 @@ private:
 	SDL_Surface* menuButton;
 	Board* board;
 	unsigned int frames;
+	PlayerList players;
 };
 
 

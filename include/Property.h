@@ -22,24 +22,19 @@ enum ImprovementStatus
 
 class Property
 {
-    public:
+public:
 	Property();
-	virtual
-	~Property();
-	unsigned int
-	getHousePrice();
-	ImprovementStatus
-	getImprovementStatus();
-	void
-	setImprovementStatus(ImprovementStatus improvementStatus);
-	std::string
-	getName();
-	unsigned int
-	getPrice();
-	unsigned int
-	getRent();
-    private:
+	virtual ~Property();
+	unsigned int getHousePrice();
+	ImprovementStatus getImprovementStatus();
+	void setImprovementStatus(ImprovementStatus improvementStatus);
+	std::string getName();
+	unsigned int getPrice();
+	unsigned int getRent();
+
 	std::string name;
+    
+private:
 	unsigned int rent[6];
 	ImprovementStatus improvementStatus;
 	unsigned int price;

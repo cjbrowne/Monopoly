@@ -10,39 +10,28 @@
 
 #include "Property.h"
 
-/*
- OLD_KENT_ROAD,
- WHITECHAPEL_ROAD,
- THE_ANGEL_ISLINGTON,
- EUSTON_ROAD,
- PENTONVILLE_ROAD,
- PALL_MALL,
- // TODO: missing property
- WHITEHALL,
- BOW_STREET,
- VINE_STREET,
- MARLBOROUGH_STREET,
- THE_STRAND,
- FLEET_STREET,
- // TODO: missing property
- COVENTRY_STREET,
- PICADILLY,
- LIVERPOOL_STREET,
- REGENT_STREET,
- OXFORD_STREET,
- BOND_STREET,
- PARK_LANE,
- MAYFAIR*/
+
+struct PropertyCard
+{
+	Property* value;
+	// double-linked list makes it easier to delete from the middle of the list
+	PropertyCard* next;
+	PropertyCard* previous;
+	unsigned int index;
+};
 
 class PropertyDeck
 {
-    public:
+public:
 	PropertyDeck();
-	virtual
-	~PropertyDeck();
-    private:
-	Property properties[];
-	unsigned int numProperties;
+	virtual ~PropertyDeck();
+	void add(Property property);
+	void remove(Property property);
+	PropertyCard* get(unsigned int index);
+	PropertyCard* findByName(const std::string &name);
+private:
+	PropertyCard* top;
+	unsigned int count;
 };
 
 #endif /* PROPERTYDECK_H_ */
